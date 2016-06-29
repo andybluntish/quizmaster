@@ -1,7 +1,7 @@
 {
   "name": "quizmaster",
   "version": "0.0.0",
-  "description": "Small description for quizmaster goes here",
+  "description": "Blake JS Test quiz application.",
   "private": true,
   "directories": {
     "doc": "doc",
@@ -12,11 +12,11 @@
     "start": "ember server",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/andybluntish/quizmaster.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Andy Stanford-Bluntish <andy@bluntish.net>",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -37,7 +37,6 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
-    "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
   }
 }
