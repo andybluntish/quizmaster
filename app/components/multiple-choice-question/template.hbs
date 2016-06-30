@@ -1,0 +1,18 @@
+<div class="question__stem">
+  <p>{{ data.question }}</p>
+</div>
+
+<div class="question__answers">
+  {{#each data.answers as |option index|}}
+    <p class="question__answer">
+      <input type="radio" id="answer_{{data.id}}_{{index}}" name="question_{{data.id}}" value="{{index}}" class="question__input" {{action "selectAnswer" index on="change"}} disabled={{showValidation}}>
+      <label for="answer_{{data.id}}_{{index}}" class="question__label">{{option}}</label>
+    </p>
+  {{/each}}
+</div>
+
+{{#if solution}}
+  <div class="question__solution">
+    <p>Good try. The correct answer is <q>{{solution}}</q>.</p>
+  </div>
+{{/if}}
