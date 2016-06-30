@@ -18,14 +18,14 @@ export default Ember.Component.extend({
   // Calculate the score based on the currently select answer
   currentScore: computed('selectedAnswer', 'data.correctAnswer', {
     get() {
-      const selectedAnswer = get(this, 'selectedAnswer');
-      const correctAnswer = get(this, 'data.correctAnswer');
+      let selectedAnswer = get(this, 'selectedAnswer');
+      let correctAnswer = get(this, 'data.correctAnswer');
 
       if (selectedAnswer === null) {
         return null;
       }
 
-      const score = selectedAnswer === correctAnswer ? 1 : 0;
+      let score = selectedAnswer === correctAnswer ? 1 : 0;
 
       return score;
     }
@@ -34,8 +34,8 @@ export default Ember.Component.extend({
   // If an answer has been supplied, set correct/incorrect className on the component
   answerStateClassName: computed('currentScore', 'showValidation', {
     get() {
-      const currentScore = get(this, 'currentScore');
-      const showValidation = get(this, 'showValidation');
+      let currentScore = get(this, 'currentScore');
+      let showValidation = get(this, 'showValidation');
 
       if (!showValidation || currentScore === null) {
         return '';
@@ -49,10 +49,10 @@ export default Ember.Component.extend({
 
   solution: computed('showValidation', 'currentScore', {
     get() {
-      const showValidation = get(this, 'showValidation');
-      const answers = get(this, 'data.answers');
-      const correctAnswer = get(this, 'data.correctAnswer');
-      const selectedAnswer = get(this, 'selectedAnswer');
+      let showValidation = get(this, 'showValidation');
+      let answers = get(this, 'data.answers');
+      let correctAnswer = get(this, 'data.correctAnswer');
+      let selectedAnswer = get(this, 'selectedAnswer');
 
       if (!showValidation || correctAnswer === selectedAnswer) {
         return;
@@ -70,8 +70,8 @@ export default Ember.Component.extend({
 
       set(this, 'selectedAnswer', answer);
 
-      const setScore = get(this, 'setScore');
-      const currentScore = get(this, 'currentScore');
+      let setScore = get(this, 'setScore');
+      let currentScore = get(this, 'currentScore');
 
       if (typeof setScore === 'function') {
         setScore(currentScore);

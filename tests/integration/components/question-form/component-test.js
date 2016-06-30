@@ -8,7 +8,7 @@ moduleForComponent('question-form', 'Integration | Component | question form', {
 test('for each item in the questions attribute, yeild the item, a setScore action, and isSubmitted boolean', function(assert) {
   assert.expect(3);
 
-  const questions = [
+  let questions = [
     { id: 1 },
     { id: 2 },
     { id: 3 }
@@ -22,7 +22,7 @@ test('for each item in the questions attribute, yeild the item, a setScore actio
     </p>
   {{/question-form}}`);
 
-  const items = this.$('.item');
+  let items = this.$('.item');
 
   assert.equal(items.length, 3, 'correct number of questions');
   assert.equal(items.last().find('.id').text(), '3', 'correct question ID');
@@ -32,11 +32,11 @@ test('for each item in the questions attribute, yeild the item, a setScore actio
 test('it should trigger an external action to send question scores on form submit', function(assert) {
   assert.expect(1);
 
-  const questions = [{ id: 5 }];
-  const expected = { 5: 2 };
+  let questions = [{ id: 5 }];
+  let expected = { 5: 2 };
 
   this.set('questions', questions);
-  this.set('externalAction', data => {
+  this.set('externalAction', (data) => {
     assert.deepEqual(data, expected, 'submitted value is passed to external action');
   });
 
@@ -55,20 +55,20 @@ test('quiz may be submitted once, only after all questions have been attempted',
   // once.
   assert.expect(1);
 
-  const questions = [
+  let questions = [
     { id: 1 },
     { id: 2 },
     { id: 3 }
   ];
 
-  const expected = {
+  let expected = {
     1: 1,
     2: 1,
     3: 1
   };
 
   this.set('questions', questions);
-  this.set('externalAction', data => {
+  this.set('externalAction', (data) => {
     assert.deepEqual(data, expected, 'submitted value is passed to external action');
   });
 

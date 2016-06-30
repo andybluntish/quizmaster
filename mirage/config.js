@@ -125,8 +125,8 @@ export default function() {
   // GET /quizzes/:id
   // Fetch a single Quiz with its associated Questions
   this.get('/quizzes/:id', (schema, request) => {
-    const id = parseInt(request.params.id, 10);
-    const quiz = QUIZZES.filter(q => q.id === id)[0];
+    let id = parseInt(request.params.id, 10);
+    let [quiz] = QUIZZES.filter((q) => q.id === id);
 
     if (!quiz) {
       return new Mirage.Response(404, {}, {
@@ -134,7 +134,7 @@ export default function() {
       });
     }
 
-    const questions = QUESTIONS.filter(q => quiz.question_ids.indexOf(q.id) !== -1);
+    let questions = QUESTIONS.filter((q) => quiz.question_ids.indexOf(q.id) !== -1);
 
     return {
       quiz,

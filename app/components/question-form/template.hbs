@@ -1,7 +1,7 @@
 <ol class="question-form__list">
   {{#each questions as |question|}}
     <li class="question-form__item">
-      {{yield question (action 'setScore' question.id) isSubmitted}}
+      {{yield question (action "setScore" question.id) isSubmitted}}
     </li>
   {{/each}}
 </ol>

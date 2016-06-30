@@ -27,12 +27,12 @@ export default Component.extend({
       return;
     }
 
-    const scores = get(this, 'scores');
-    const questions = get(this, 'questions');
-    const completed = Object.keys(scores).length === questions.length;
+    let scores = get(this, 'scores');
+    let questions = get(this, 'questions');
+    let completed = Object.keys(scores).length === questions.length;
 
     if (completed) {
-      const submitScores = get(this, 'submitScores');
+      let submitScores = get(this, 'submitScores');
       set(this, 'isSubmitted', true);
       submitScores(scores);
     }

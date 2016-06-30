@@ -9,8 +9,8 @@ moduleForModel('question', 'Unit | Model | question', {
 });
 
 test('should belong to a Quiz', function(assert) {
-  const Question = this.store().modelFor('question');
-  const relationship = get(Question, 'relationshipsByName').get('quiz');
+  let Question = this.store().modelFor('question');
+  let relationship = get(Question, 'relationshipsByName').get('quiz');
 
   assert.equal(relationship.key, 'quiz', 'has relationship with quiz');
   assert.equal(relationship.kind, 'belongsTo', 'kind of relationship is belongsTo');

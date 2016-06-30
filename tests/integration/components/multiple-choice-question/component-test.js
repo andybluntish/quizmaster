@@ -23,8 +23,8 @@ test('it renders a radio input and label for each answer', function(assert) {
   this.set('data', mockQuestion);
   this.render(hbs`{{multiple-choice-question data=data}}`);
 
-  const radioInputs = this.$('[type="radio"][name="question_2"]');
-  const labels = this.$('label');
+  let radioInputs = this.$('[type="radio"][name="question_2"]');
+  let labels = this.$('label');
 
   assert.equal(radioInputs.length, 4, 'correct number of radio buttons in a group');
   assert.equal(labels.length, 4, 'correct number of labels');
@@ -39,13 +39,13 @@ test('it triggers external action when answer is selected', function(assert) {
   this.render(hbs`{{multiple-choice-question data=data setScore=externalAction}}`);
 
   // Selecting the second answer (incorrect)
-  this.set('externalAction', data => {
+  this.set('externalAction', (data) => {
     assert.equal(data, 0, 'no points when answer is incorrect');
   });
   this.$('input:eq(1)').click();
 
   // Selecting the last answer (correct!)
-  this.set('externalAction', data => {
+  this.set('externalAction', (data) => {
     assert.equal(data, 1, '1 point when answer is correct');
   });
   this.$('input:eq(3)').click();
@@ -63,7 +63,7 @@ test('if showValidation is true, disable form controls', function(assert) {
 
   this.render(hbs`{{multiple-choice-question data=data setScore=externalAction showValidation=true}}`);
 
-  const input = this.$('input:eq(1)');
+  let input = this.$('input:eq(1)');
 
   input.click();
   assert.equal(input.prop('disabled'), true, 'inputs are disabled');

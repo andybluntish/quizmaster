@@ -8,11 +8,11 @@ test('list all the Quizzes', function(assert) {
 
   visit('/');
 
-  andThen(function() {
-    const quizzes = find('.quiz-list .quiz-list__item');
+  andThen(() => {
+    let quizzes = find('.quiz-list .quiz-list__item');
     assert.equal(quizzes.length, 5, 'correct number of quizzes');
 
-    const quiz = find('.quiz-list .quiz-list__item:eq(0) .quiz-list__title');
+    let quiz = find('.quiz-list .quiz-list__item:eq(0) .quiz-list__title');
     assert.equal(quiz.text(), 'Quiz 1', 'correct quiz title');
   });
 });
@@ -23,14 +23,14 @@ test('clicking on a Quiz link navigates to the Quiz page', function(assert) {
   visit('/');
   click('.quiz-list .quiz-list__item:eq(1) .quiz-list__link');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentURL(), '/quizzes/2', 'correct quiz URL');
 
-    const title = find('.quiz__title');
+    let title = find('.quiz__title');
     assert.equal(title.text(), 'Quiz 2', 'correct quiz title');
 
     // ensure model relationship is loaded
-    const questions = find('.question');
+    let questions = find('.question');
     assert.equal(questions.length, 2, 'correct number of questions');
   });
 });
