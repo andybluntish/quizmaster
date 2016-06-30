@@ -1,1 +1,9 @@
-{{outlet}}
+<div class="quiz">
+  <h2 class="quiz__title">{{model.title}}</h2>
+
+  {{#question-form questions=model.questions as |question setScore isSubmitted|}}
+    <div class="question">
+
+    </div>
+  {{/question-form}}
+</div>
