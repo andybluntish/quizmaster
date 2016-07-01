@@ -13,6 +13,7 @@ export default Component.extend({
   questions: null,
   scores: null,
   finalScore: null,
+  submitScores: null,
   isSubmitted: false,
 
   init() {
