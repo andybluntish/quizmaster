@@ -2,6 +2,18 @@
 
 Blake JS Test quiz application.
 
+This is a simple quiz application written in Ember, consisting of multiple quizzes that each contain a number of multiple-choice questions. Each quiz must be completed in order before the next becomes available.
+
+The application functionality is primarily contained within two components: a wrapper `{{question-form}}` component to handle submission and score aggregation, and a `{{multiple-choice-question}}` for each question in the quiz. This allows each question to provide its own answer validation and rendering, keeping the option to add more question types in the future. At submission, the question answers are validated inline to give immediate feedback, and the correct answer is given if the question is marked as incorrect.
+
+User scores and progress are stored in a session service, which may be synced to a server if necessary. The application data api is mocked using [Mirage](http://www.ember-cli-mirage.com/) and the [ActiveModel adapter](https://github.com/ember-data/active-model-adapter).
+
+## TODO:
+
+* Refactor Controllers into a separate components
+* CSS styles
+* sync user session data with the server
+
 ---
 
 ## Prerequisites
