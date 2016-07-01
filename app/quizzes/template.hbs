@@ -1,9 +1,47 @@
-<ol class="quiz-list">
-  {{#each model as |quiz|}}
-    <li class="quiz-list__item">
-      {{#link-to "quiz" quiz.id class="quiz-list__link"}}
-        <span class="quiz-list__title">{{quiz.title}}</span>
-      {{/link-to}}
-    </li>
-  {{/each}}
-</ol>
+{{#if completedQuizzes}}
+  <div class="quiz-group quiz-group--completed">
+    <h2>Completed Quizzes</h2>
+
+    <ul class="quiz-list">
+      {{#each completedQuizzes as |quiz|}}
+        <li class="quiz-list__item">
+          <span class="quiz-list__title">{{quiz.quiz.title}}</span>
+          (<span class="quiz-list__result">
+            <span class="quiz-list__score quiz-list__score--final">{{quiz.finalScore}}</span>
+            /
+            <span class="quiz-list__score quiz-list__score--potential">{{quiz.potentialScore}}</span>
+          </span>)
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+
+{{#if nextQuiz}}
+  <div class="quiz-group quiz-group--next">
+    <h2>Next Quiz</h2>
+    <ul class="quiz-list">
+      <li class="quiz-list__item">
+        {{#link-to "quiz" nextQuiz.id class="quiz-list__link"}}
+          <span class="quiz-list__title">{{nextQuiz.title}}</span>
+        {{/link-to}}
+      </li>
+    </ul>
+  </div>
+{{/if}}
+
+{{#if incompleteQuizzes}}
+  <div class="quiz-group quiz-group--upcoming">
+    <h2>Upcoming Quizzes</h2>
+
+    <ul class="quiz-list">
+      {{#each incompleteQuizzes as |quiz|}}
+        <li class="quiz-list__item">
+          <span class="quiz-list__title">{{quiz.title}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{else}}
+  <p>Congratulations, you've completed all of the quizzes! Nice work.</p>
+{{/if}}

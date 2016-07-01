@@ -11,13 +11,13 @@
     <p>Well done!</p>
 
     <p>You scored
-      <span class="question-form__score">{{finalScore}}</span>
+      <span class="question-form__score question-form__score--final">{{finalScore}}</span>
       out of a potential
-      <span class="question-form__score">{{potentialScore}}</span>
+      <span class="question-form__score question-form__score--potential">{{potentialScore}}</span>
       points.
     </p>
 
-    <p>{{link-to "Try another quiz" "quizzes" class="question-form__return"}}</p>
+    <p>{{link-to "Done" "quizzes" class="question-form__return"}}</p>
   </div>
 {{else}}
   <input type="submit" value="Submit" class="question-form__submit">
