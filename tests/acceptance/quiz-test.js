@@ -26,3 +26,41 @@ test('view an individual Quiz and its Questions', function(assert) {
     assert.equal(answers.first().text().trim(), 'United States', 'first question first answer has correct value');
   });
 });
+
+test('completing a quiz', function(assert) {
+  assert.expect(5);
+
+  visit('/');
+
+  click('.quiz-list__link:eq(0)');
+
+  andThen(() => {
+    assert.equal(currentURL(), '/quizzes/1');
+  });
+
+  // Incorrect answer
+  click('.question:eq(0) label:contains("Russia")');
+
+  // Correct answers
+  click('.question:eq(1) label:contains("Mandarin")');
+  click('.question:eq(2) label:contains("Pacific Ocean")');
+
+  // Sumbit
+  click('[type="submit"]');
+
+  andThen(() => {
+    let solution = find('.question:eq(0) .question__solution').text();
+    let actualScore = find('.question-form__score:eq(0)').text();
+    let potentialScore = find('.question-form__score:eq(1)').text();
+
+    assert.ok(solution.indexOf('Canada') !== -1, 'correct solution is displayed for incorrect answer');
+    assert.equal(actualScore, 2, 'correct score exists');
+    assert.equal(potentialScore, 3, 'correct potential score exists');
+  });
+
+  click('.question-form__return');
+
+  andThen(() => {
+    assert.equal(currentRouteName(), 'quizzes');
+  });
+});
