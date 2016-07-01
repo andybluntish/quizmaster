@@ -47,3 +47,39 @@ test('isSubmitted property is set on successful sumbission', function(assert) {
 
   assert.equal(get(component, 'isSubmitted'), true, 'has been submitted');
 });
+
+test('potentialScore property is calculated from the number of questions', function(assert) {
+  assert.expect(2);
+
+  let component = this.subject();
+  let questions = [
+    { id: 1 }
+  ];
+
+  set(component, 'questions', questions);
+  assert.equal(get(component, 'potentialScore'), 1, 'correct potential score');
+
+  component.get('questions').pushObject({ id: 2 });
+  assert.equal(get(component, 'potentialScore'), 2, 'potential score updated');
+});
+
+test('finalScore property is set to the total score on successful sumbission', function(assert) {
+  assert.expect(1);
+
+  let component = this.subject();
+  let questions = [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 }
+  ];
+
+  set(component, 'questions', questions);
+  set(component, 'submitScores', () => {});
+
+  component.send('setScore', 1, 1);
+  component.send('setScore', 2, 2);
+  component.send('setScore', 3, 1);
+  component.submit({ preventDefault() {} });
+
+  assert.equal(get(component, 'finalScore'), 4, 'correct finalScore');
+});

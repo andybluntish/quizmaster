@@ -94,3 +94,25 @@ test('quiz may be submitted once, only after all questions have been attempted',
   // Already submitted, so submitScores should not be called again
   this.$('[type="submit"]').click();
 });
+
+test('displays the score after a sucessful submit', function(assert) {
+  assert.expect(2);
+
+  let questions = [
+    { id: 1 }
+  ];
+
+  this.set('questions', questions);
+  this.render(hbs`{{#question-form questions=questions as |question setScore isSubmitted|}}
+    <button {{action setScore 1}}>{{question.id}}</button>
+  {{/question-form}}`);
+
+  this.$('button:eq(0)').click();
+  this.$('[type="submit"]').click();
+
+  let score = this.$('.question-form__score:eq(0)');
+  let total = this.$('.question-form__score:eq(1)');
+
+  assert.equal(score.text(), '1', 'displays total score');
+  assert.equal(total.text(), '1', 'displays potential score');
+});

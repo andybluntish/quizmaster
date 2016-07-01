@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 const {
   Component,
+  computed,
   get,
   set
 } = Ember;
@@ -11,6 +12,7 @@ export default Component.extend({
   classNames: 'question-form',
   questions: null,
   scores: null,
+  finalScore: null,
   isSubmitted: false,
 
   init() {
@@ -18,6 +20,14 @@ export default Component.extend({
 
     return this._super(...arguments);
   },
+
+  potentialScore: computed('questions.[]', {
+    get() {
+      let potentialScore = get(this, 'questions.length');
+
+      return potentialScore;
+    }
+  }),
 
   submit(e) {
     e.preventDefault();
@@ -28,13 +38,21 @@ export default Component.extend({
     }
 
     let scores = get(this, 'scores');
-    let questions = get(this, 'questions');
-    let completed = Object.keys(scores).length === questions.length;
+    let totalAnswers = Object.keys(scores).length;
+    let totalQuestions = get(this, 'questions.length');
+    let completed = totalAnswers === totalQuestions;
 
     if (completed) {
       let submitScores = get(this, 'submitScores');
+      let scoreValues = Object.keys(scores).map((k) => scores[k]);
+      let finalScore = scoreValues.reduce((prev, curr) => prev + curr);
+
+      set(this, 'finalScore', finalScore);
       set(this, 'isSubmitted', true);
-      submitScores(scores);
+
+      if (typeof submitScores === 'function') {
+        submitScores(scores);
+      }
     }
   },
 
