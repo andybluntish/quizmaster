@@ -1,8 +1,13 @@
 /* ==========================================================================
-   Quizmaster Styles
+   Quiz
    ========================================================================== */
 
-@import "variables";
-@import "base";
-@import "components/application";
-@import "components/quiz";
+.quiz {
+
+  &__title {
+    margin: 0 0 $double-size;
+    padding: $size;
+    font-weight: $font-weight-semibold;
+    background: $light-grey;
+  }
+}
