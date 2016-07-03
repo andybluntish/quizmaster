@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Application
+   ========================================================================== */
+
+// Main Application view element
+body > .ember-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+[role="banner"] {
+  font-family: $font-family-secondary;
+  text-align: center;
+  color: $light-grey;
+  background: $dark-grey;
+
+  .site-title {
+    margin: $double-size;
+    font-weight: $font-weight-normal;
+
+    a {
+      display: inline-block;
+      padding: $half-size;
+    }
+  }
+}
+
+[role="main"] {
+  padding: $size;
+}
+
+[role="contentinfo"] {
+  margin-top: auto;
+  padding: $size;
+  text-align: center;
+  color: $grey;
+  background: $light-grey;
+  overflow: hidden;
+
+  a {
+    color: $dark-grey;
+  }
+}

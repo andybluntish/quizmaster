@@ -28,7 +28,7 @@ html {
  */
 
 html {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: $font-family-primary;
   color: $dark-grey;
 
   /* Scale the root font size at different breakpoints */
