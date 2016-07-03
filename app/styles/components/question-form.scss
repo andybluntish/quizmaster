@@ -1,0 +1,49 @@
+/* ==========================================================================
+   Question Form
+   ========================================================================== */
+
+.question-form {
+
+  &__list {
+    @include clearfix();
+
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+  }
+
+  &__submit {
+    display: block;
+    margin: $double-size auto;
+    padding: $half-size $size;
+    border-radius: $border-radius;
+    font-size: 125%;
+    text-transform: lowercase;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: darkorange;
+    transition: background $fade-duration ease-out;
+
+    &:hover {
+      background: darken(darkorange, 3);
+    }
+  }
+
+  &__result {
+    margin: $double-size $size;
+    text-align: center;
+    font-size: 125%;
+  }
+
+  &__return,
+  &__return:focus,
+  &__return:hover, {
+    display: inline-block;
+    padding: $half-size $size;
+    margin: $size 0 0;
+    color: inherit;
+    background: $state-info;
+    text-transform: lowercase;
+  }
+}

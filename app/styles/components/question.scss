@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Question
+   ========================================================================== */
+
+.question {
+  margin: $size;
+  box-shadow: $box-shadow-soft;
+
+  &__stem,
+  &__solution {
+    padding: $size;
+
+    p:last-child {
+      margin: 0;
+    }
+  }
+
+  &__stem {
+    border-bottom: 2px solid $light-grey;
+  }
+
+  &__answer {
+    margin: 0;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__label {
+    display: block;
+    padding: $size;
+
+    &:hover {
+      background: $state-info;
+    }
+  }
+
+  &__input:checked + &__label {
+    background: $state-info;
+  }
+
+  &__solution {
+    background: $state-warning;
+  }
+}
+
+.question--correct,
+.question--incorrect {
+  .question__label:hover {
+    background: transparent;
+  }
+}
+
+.question--correct {
+  .question__input:checked + .question__label {
+    background: $state-correct;
+  }
+}
+
+.question--incorrect {
+  .question__input:checked + .question__label {
+    background: $state-incorrect;
+  }
+}

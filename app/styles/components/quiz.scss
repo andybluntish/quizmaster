@@ -5,8 +5,9 @@
 .quiz {
 
   &__title {
-    margin: 0 0 $double-size;
+    margin: 0;
     padding: $size;
+    padding-left: $double-size;
     font-weight: $font-weight-semibold;
     background: $light-grey;
   }

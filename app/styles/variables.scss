@@ -68,11 +68,16 @@ $primary-dark: darken($primary, 10);
 $secondary: #3F6DA9;
 $secondary-dark: darken($secondary, 10);
 
+$state-info: #ebf9ff;
+$state-correct: #ebfff2;
+$state-incorrect: #ffebeb;
+$state-warning: #fffceb;
+
 /**
  * Effects
  */
 
 $border-radius:    3px;
 $thin-line-weight: 2px;
-$box-shadow-soft:  0 2px 28px hsla(0, 0%, 0%, 0.15);
+$box-shadow-soft:  0 2px $size hsla(0, 0%, 0%, 0.1);
 $fade-duration:    0.3s;
