@@ -9,6 +9,8 @@ moduleFor('service:session', 'Unit | Service | session', {
 });
 
 test('it saves a user submission for a Quiz', function(assert) {
+  assert.expect(3);
+
   let service = this.subject();
   let submission = {
     quizId: 1,
@@ -25,6 +27,8 @@ test('it saves a user submission for a Quiz', function(assert) {
 });
 
 test('it finds a quiz submission by ID', function(assert) {
+  assert.expect(3);
+
   let service = this.subject();
   let submission1 = {
     quizId: 1,

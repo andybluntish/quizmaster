@@ -64,3 +64,30 @@ test('completing a quiz', function(assert) {
     assert.equal(currentRouteName(), 'quizzes');
   });
 });
+
+test('quizzes must be completed in order', function(assert) {
+  assert.expect(3);
+
+  visit('/quizzes/2');
+  andThen(() => {
+    assert.equal(currentRouteName(), 'quizzes', 'not the first quiz, so redirected back to the quizzes page');
+  });
+
+  // Complete the first quiz
+  click('.quiz-list__link:eq(0)');
+  click('.question:eq(0) label:contains("Russia")');
+  click('.question:eq(1) label:contains("Mandarin")');
+  click('.question:eq(2) label:contains("Pacific Ocean")');
+  click('[type="submit"]');
+  click('.question-form__return');
+
+  visit('/quizzes/1');
+  andThen(() => {
+    assert.equal(currentRouteName(), 'quizzes', 'quiz already completed, so redirected back to the quizzes page');
+  });
+
+  visit('/quizzes/3');
+  andThen(() => {
+    assert.equal(currentRouteName(), 'quizzes', 'not the next quiz in sequence, so redirected back to the quizzes page');
+  });
+});
