@@ -1,0 +1,345 @@
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/* ==========================================================================
+   Box Sizing
+   http://www.paulirish.com/2012/box-sizing-border-box-ftw
+   http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+   ========================================================================== */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Document
+ */
+
+html {
+  font-family: 'Helvetica Neue', sans-serif;
+  color: $dark-grey;
+
+  /* Scale the root font size at different breakpoints */
+  font-size: 85%;
+  line-height: 1.3;
+
+  @media only screen and (min-width: $break-xs) {
+    font-size: 90%;
+  }
+
+  @media only screen and (min-width: $break-sm) {
+    font-size: 95%;
+    line-height: 1.4;
+  }
+
+  @media only screen and (min-width: $break-md) {
+    font-size: 100%;
+  }
+
+  @media only screen and (min-width: $break-lg) {
+    font-size: 105%;
+    line-height: 1.5;
+  }
+
+  @media only screen and (min-width: $break-xl) {
+    font-size: 110%;
+    line-height: 1.6;
+  }
+}
+
+/**
+ * Headings
+ */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: $double-size 0 $half-size;
+  font-weight: $font-weight-bold;
+  line-height: 1.1;
+}
+
+h1 {
+  margin: $triple-size 0;
+  font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+h3 {
+  font-size: $font-size-h3;
+  color: $primary;
+}
+
+h4 {
+  font-size: $font-size-h4;
+}
+
+h5 {
+  font-size: $font-size-h5;
+  font-style: italic;
+  font-weight: $font-weight-normal;
+}
+
+h6 {
+  font-size: $font-size-h6;
+}
+
+/**
+ * Blocks
+ */
+
+p, blockquote, figure,
+ol, ul, dl,
+table, pre {
+  margin: 0 0 $size;
+}
+
+/**
+ * Bold
+ */
+
+b, strong, th {
+  font-weight: $font-weight-bold;
+}
+
+/**
+ * Small
+ */
+
+small {
+  font-size: $font-size-small;
+}
+
+/**
+ * Quotes
+ */
+
+blockquote {
+  margin: $size;
+  padding-left: $half-size;
+  padding-right: $size;
+  border-left: $thin-line-weight solid $light-grey;
+  font-style: italic;
+  color: $grey;
+}
+
+q {
+  quotes: "“" "”" "‘" "’";
+}
+
+/**
+ * Horizontal Rule
+ */
+
+hr {
+  margin: $double-size 0;
+  border: 0;
+  height: $thin-line-weight;
+  background: $light-grey;
+}
+
+/**
+ * Abbr
+ */
+
+abbr[title] {
+  text-decoration: none;
+}
+
+/**
+ * Code
+ */
+
+pre, code, kdb, samp, var {
+  font-family: $font-family-monospace;
+}
+
+code {
+  color: $secondary;
+}
+
+pre {
+  margin: $size 0;
+  padding: $half-size;
+  color: $light-grey;
+  background: $dark-grey;
+  box-shadow: $box-shadow-soft;
+  overflow: auto;
+
+  code {
+    color: inherit;
+  }
+}
+
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+$_linkColour:                   $primary;
+$_linkFocusColour:              $primary-dark;
+$_linkTransitionInDuration:     $fade-duration;
+$_linkTransitionInTiming:       ease-out;
+$_linkTransitionOutDuration:    $fade-duration * 2;
+$_linkTransitionOutTiming:      ease-out;
+
+a {
+  text-decoration: none;
+  color: $_linkColour;
+  transition: color $_linkTransitionOutDuration $_linkTransitionOutTiming;
+
+  &:focus,
+  &:hover {
+    color: $_linkFocusColour;
+    transition-duration: $_linkTransitionInDuration;
+    transition-timing-function: $_linkTransitionInTiming;
+  }
+}
+
+a:not([href]) {
+  &,
+  &:focus,
+  &:hover {
+    color: inherit;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  a {
+    @extend a:not([href]);
+  }
+}
+
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Nested lists
+ */
+
+ol ol, ol ul,
+ul ul, ul ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/**
+ * Definition lists
+ */
+
+dt {
+  margin: 0 0 $quarter-size;
+  font-size: $font-size-small;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 0 0 $size;
+}
+
+/**
+ * Blank lists
+ */
+
+.blank-list {
+  padding: 0;
+  list-style: none;
+}
+
+
+/**
+ * Inline lists
+ */
+
+.inline-list {
+  @extend .blank-list;
+
+  li {
+    display: inline-block;
+  }
+}
+
+
+/* ==========================================================================
+   Media
+   ========================================================================== */
+
+audio,
+canvas,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table, caption {
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption {
+  @extend h3;
+}
+
+th, td {
+  padding: $half-size $size $half-size 0;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+thead {
+  border-bottom: $thin-line-weight solid $light-grey;
+}
+
+th {
+  font-size: $font-size;
+}
+
+tfoot {
+  border-top: $thin-line-weight solid $light-grey;
+
+  th {
+    font-style: italic;
+    font-weight: normal;
+    font-size: $font-size-small;
+    color: $grey;
+  }
+}
+
+tbody tr {
+  border-top: 1px solid $light-grey;
+}
